@@ -7,6 +7,7 @@ import (
 
 	"github.com/google/uuid"
 	"github.com/ncvyn/gator/internal/database"
+	"github.com/ncvyn/gator/internal/xml"
 )
 
 func handlerLogin(s *state, cmd command) error {
@@ -80,6 +81,23 @@ func handlerUsers(s *state, cmd command) error {
 			name = user.Name
 		}
 		fmt.Println("*", name)
+	}
+	return nil
+}
+
+func handlerAgg(s *state, cmd command) error {
+	if len(cmd.args) != 0 {
+		return fmt.Errorf("usage: %s", cmd.name)
+	}
+
+	f, err := xml.FetchFeed(context.Background(), "https://www.wagslane.dev/index.xml")
+	if err != nil {
+		return fmt.Errorf("couldn't fetch feed: %w", err)
+	}
+	fmt.Println("Aggregated feed:")
+	for _, item := range f.Channel.Item {
+		fmt.Println("*", item.Title)
+		fmt.Println("  ", item.Description)
 	}
 	return nil
 }
