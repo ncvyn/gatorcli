@@ -2,8 +2,6 @@ package config
 
 import (
 	"encoding/json"
-	"os"
-	"path/filepath"
 )
 
 type Config struct {
@@ -14,13 +12,7 @@ type Config struct {
 const configFileName string = ".gatorconfig.json"
 
 func Read() (Config, error) {
-	homeDir, err := os.UserHomeDir()
-	if err != nil {
-		return Config{}, err
-	}
-
-	filePath := filepath.Join(homeDir, configFileName)
-	fileContent, err := os.ReadFile(filePath)
+	fileContent, err := read(configFileName)
 	if err != nil {
 		return Config{}, err
 	}

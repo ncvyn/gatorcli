@@ -10,8 +10,12 @@ import (
 func main() {
 	config, err := config.Read()
 	if err != nil {
-		fmt.Println("error:", err)
-		os.Exit(1)
+		printErr(err)
 	}
 	fmt.Println(config.DbURL)
+}
+
+func printErr(err error) {
+	fmt.Println("error:", err)
+	os.Exit(1)
 }
