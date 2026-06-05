@@ -1,0 +1,3 @@
+#!/bin/sh
+
+pg_ctl -D ./pgdata -l ./pgdata/log -o "-k $PWD/pgdata/run" start
