@@ -21,3 +21,8 @@ func Read() (Config, error) {
 	err = json.Unmarshal(fileContent, &config)
 	return config, err
 }
+
+func (c *Config) SetUser(user_name string) error {
+	c.CurrentUserName = user_name
+	return c.write(configFileName)
+}

@@ -12,6 +12,11 @@ func main() {
 	if err != nil {
 		printErr(err)
 	}
+
+	if err := config.SetUser("nevan"); err != nil {
+		printErr(err)
+	}
+	fmt.Println(config.CurrentUserName)
 	fmt.Println(config.DbURL)
 }
 
