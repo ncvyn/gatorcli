@@ -10,17 +10,17 @@ import (
 )
 
 func handlerLogin(s *state, cmd command) error {
-	if len(cmd.args) < 1 {
-		return fmt.Errorf("expected at least 1 argument")
+	if len(cmd.args) != 1 {
+		return fmt.Errorf("usage: %s <name>", cmd.name)
 	}
 
 	user, err := s.db.GetUser(context.Background(), cmd.args[0])
 	if err != nil {
-		return err
+		return fmt.Errorf("couldn't find user: %w", err)
 	}
 
 	if err := s.config.SetUser(user.Name); err != nil {
-		return err
+		return fmt.Errorf("couldn't set user: %w", err)
 	}
 
 	fmt.Println("User", user.Name, "has been logged in.")
@@ -28,8 +28,8 @@ func handlerLogin(s *state, cmd command) error {
 }
 
 func handlerRegister(s *state, cmd command) error {
-	if len(cmd.args) < 1 {
-		return fmt.Errorf("expected at least 1 argument")
+	if len(cmd.args) != 1 {
+		return fmt.Errorf("usage: %s <name>", cmd.name)
 	}
 	user, err := s.db.CreateUser(context.Background(), database.CreateUserParams{
 		ID:        uuid.New(),
@@ -38,11 +38,11 @@ func handlerRegister(s *state, cmd command) error {
 		Name:      cmd.args[0],
 	})
 	if err != nil {
-		return err
+		return fmt.Errorf("couldn't create user: %w", err)
 	}
 
 	if err := s.config.SetUser(user.Name); err != nil {
-		return err
+		return fmt.Errorf("couldn't set user: %w", err)
 	}
 	fmt.Println("User", user.Name, "has been registered and set.")
 	return nil
