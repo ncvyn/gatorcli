@@ -31,6 +31,7 @@ func handlerRegister(s *state, cmd command) error {
 	if len(cmd.args) != 1 {
 		return fmt.Errorf("usage: %s <name>", cmd.name)
 	}
+
 	user, err := s.db.CreateUser(context.Background(), database.CreateUserParams{
 		ID:        uuid.New(),
 		CreatedAt: time.Now(),
@@ -45,5 +46,17 @@ func handlerRegister(s *state, cmd command) error {
 		return fmt.Errorf("couldn't set user: %w", err)
 	}
 	fmt.Println("User", user.Name, "has been registered and set.")
+	return nil
+}
+
+func handlerReset(s *state, cmd command) error {
+	if len(cmd.args) != 0 {
+		return fmt.Errorf("usage: %s", cmd.name)
+	}
+
+	if err := s.db.ResetUsers(context.Background()); err != nil {
+		return fmt.Errorf("couldn't reset database: %w", err)
+	}
+	fmt.Println("Database has been reset.")
 	return nil
 }
