@@ -26,6 +26,7 @@ func main() {
 	c.register("login", handlerLogin)
 	c.register("register", handlerRegister)
 	c.register("reset", handlerReset)
+	c.register("users", handlerUsers)
 
 	db, err := sql.Open("postgres", cfg.DbURL)
 	if err != nil {
