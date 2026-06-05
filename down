@@ -1,0 +1,3 @@
+#!/bin/sh
+
+cd sql/schema && goose postgres "postgres://nevan@localhost:5432/gator?sslmode=disable" down
