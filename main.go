@@ -7,6 +7,10 @@ import (
 	"github.com/ncvyn/gator/internal/config"
 )
 
+type state struct {
+	config *config.Config
+}
+
 func main() {
 	cfg, err := config.Read()
 	if err != nil {
