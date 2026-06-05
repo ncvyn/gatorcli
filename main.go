@@ -8,16 +8,16 @@ import (
 )
 
 func main() {
-	config, err := config.Read()
+	cfg, err := config.Read()
 	if err != nil {
 		printErr(err)
 	}
 
-	if err := config.SetUser("nevan"); err != nil {
+	if err := cfg.SetUser("nevan"); err != nil {
 		printErr(err)
 	}
-	fmt.Println(config.CurrentUserName)
-	fmt.Println(config.DbURL)
+	fmt.Println(cfg.CurrentUserName)
+	fmt.Println(cfg.DbURL)
 }
 
 func printErr(err error) {
