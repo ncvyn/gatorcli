@@ -9,14 +9,9 @@ import (
 	"github.com/ncvyn/gator/internal/database"
 )
 
-func handlerFollow(s *state, cmd command) error {
+func handlerFollow(s *state, cmd command, user database.User) error {
 	if len(cmd.args) != 1 {
 		return fmt.Errorf("usage: %s <url>", cmd.name)
-	}
-
-	user, err := s.db.GetUser(context.Background(), s.config.CurrentUserName)
-	if err != nil {
-		return fmt.Errorf("failed to get user: %w", err)
 	}
 
 	feed, err := s.db.GetFeedByUrl(context.Background(), cmd.args[0])

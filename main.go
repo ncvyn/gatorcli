@@ -28,10 +28,10 @@ func main() {
 	c.register("reset", handlerReset)
 	c.register("users", handlerUsers)
 	c.register("agg", handlerAgg)
-	c.register("addfeed", handlerAddFeed)
+	c.register("addfeed", middleware(handlerAddFeed))
 	c.register("feeds", handlerFeeds)
-	c.register("follow", handlerFollow)
-	c.register("following", handlerFollowing)
+	c.register("follow", middleware(handlerFollow))
+	c.register("following", middleware(handlerFollowing))
 
 	db, err := sql.Open("postgres", cfg.DbURL)
 	if err != nil {
