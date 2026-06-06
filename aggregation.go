@@ -8,8 +8,8 @@ import (
 	"time"
 
 	"github.com/google/uuid"
-	"github.com/ncvyn/gator/internal/database"
-	"github.com/ncvyn/gator/internal/xml"
+	"github.com/ncvyn/gatorcli/internal/database"
+	"github.com/ncvyn/gatorcli/internal/xml"
 )
 
 func scrapeFeeds(s *state) error {

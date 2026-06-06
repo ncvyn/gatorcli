@@ -1,4 +1,4 @@
-module github.com/ncvyn/gator
+module github.com/ncvyn/gatorcli
 
 go 1.26.3
 

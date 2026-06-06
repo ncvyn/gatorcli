@@ -6,8 +6,8 @@ import (
 	"os"
 
 	_ "github.com/lib/pq"
-	"github.com/ncvyn/gator/internal/config"
-	"github.com/ncvyn/gator/internal/database"
+	"github.com/ncvyn/gatorcli/internal/config"
+	"github.com/ncvyn/gatorcli/internal/database"
 )
 
 type state struct {

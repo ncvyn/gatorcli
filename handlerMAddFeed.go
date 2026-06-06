@@ -6,7 +6,7 @@ import (
 	"time"
 
 	"github.com/google/uuid"
-	"github.com/ncvyn/gator/internal/database"
+	"github.com/ncvyn/gatorcli/internal/database"
 )
 
 func handlerAddFeed(s *state, cmd command, user database.User) error {

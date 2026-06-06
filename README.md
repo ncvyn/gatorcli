@@ -12,7 +12,7 @@ This is a very basic RSS aggre*gator* CLI as part of a boot.dev guided project. 
 
 You'll need Postgres and Go installed to run this program. (Any modern version should do!)
 
-Then, run `go install https://github.com/ncvyn/gator` followed by `go run .` or build the program with `go build`. 
+Then, run `go install https://github.com/ncvyn/gatorcli` followed by `go run .` or build the program with `go build`. 
 
 ### Setup
 
