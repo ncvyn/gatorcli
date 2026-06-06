@@ -17,6 +17,11 @@ func handlerFollowing(s *state, cmd command, user database.User) error {
 		return fmt.Errorf("failed to get following feeds: %w", err)
 	}
 
+	if len(feedFollows) == 0 {
+		fmt.Println(user.Name, "is not following any feeds.")
+		return nil
+	}
+
 	fmt.Println(user.Name, "is currently following:")
 	for _, feedFollow := range feedFollows {
 		feed, err := s.db.GetFeedById(context.Background(), feedFollow.FeedID)
