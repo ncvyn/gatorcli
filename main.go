@@ -33,6 +33,7 @@ func main() {
 	c.register("follow", middleware(handlerFollow))
 	c.register("following", middleware(handlerFollowing))
 	c.register("unfollow", middleware(handlerUnfollow))
+	c.register("browse", middleware(handlerBrowse))
 
 	db, err := sql.Open("postgres", cfg.DbURL)
 	if err != nil {
