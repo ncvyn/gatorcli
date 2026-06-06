@@ -15,6 +15,11 @@ func handlerFeeds(s *state, cmd command) error {
 		return fmt.Errorf("couldn't get feeds: %w", err)
 	}
 
+	if len(feeds) == 0 {
+		fmt.Println("No feeds registered yet.")
+		return nil
+	}
+
 	fmt.Println("Registered feeds:")
 	for _, feed := range feeds {
 		fmt.Println("-", feed.Name, "("+feed.Url+")")

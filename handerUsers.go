@@ -15,6 +15,11 @@ func handlerUsers(s *state, cmd command) error {
 		return fmt.Errorf("couldn't get users: %w", err)
 	}
 
+	if len(users) == 0 {
+		fmt.Println("No users registered yet.")
+		return nil
+	}
+
 	fmt.Println("Registered users:")
 	for _, user := range users {
 		var name string
