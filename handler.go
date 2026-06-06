@@ -112,7 +112,7 @@ func handlerAddFeed(s *state, cmd command) error {
 		return fmt.Errorf("couldn't find user: %w", err)
 	}
 
-	feed, err := s.db.CreateFeed(context.Background(), database.CreateFeedParams{
+	_, err = s.db.CreateFeed(context.Background(), database.CreateFeedParams{
 		ID:        uuid.New(),
 		CreatedAt: time.Now(),
 		UpdatedAt: time.Now(),
@@ -125,6 +125,27 @@ func handlerAddFeed(s *state, cmd command) error {
 	}
 
 	fmt.Println("Feed", cmd.args[0], "added to user", user.Name)
-	fmt.Println(feed.ID, feed.CreatedAt, feed.UpdatedAt, feed.Name, feed.Url, feed.UserID)
+	return nil
+}
+
+func handlerFeeds(s *state, cmd command) error {
+	if len(cmd.args) != 0 {
+		return fmt.Errorf("usage: %s", cmd.name)
+	}
+
+	feeds, err := s.db.GetFeeds(context.Background())
+	if err != nil {
+		return fmt.Errorf("couldn't get feeds: %w", err)
+	}
+
+	fmt.Println("Feeds:")
+	for _, feed := range feeds {
+		fmt.Println("*", feed.Name, "("+feed.Url+")")
+		user, err := s.db.GetUserById(context.Background(), feed.UserID)
+		if err != nil {
+			return fmt.Errorf("couldn't find user: %w", err)
+		}
+		fmt.Println("(created by:", user.Name+")")
+	}
 	return nil
 }
