@@ -30,6 +30,7 @@ func main() {
 	c.register("agg", handlerAgg)
 	c.register("addfeed", handlerAddFeed)
 	c.register("feeds", handlerFeeds)
+	c.register("follow", handlerFollow)
 
 	db, err := sql.Open("postgres", cfg.DbURL)
 	if err != nil {
