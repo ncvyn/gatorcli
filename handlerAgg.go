@@ -1,25 +1,24 @@
 package main
 
 import (
-	"context"
 	"fmt"
-
-	"github.com/ncvyn/gator/internal/xml"
+	"time"
 )
 
 func handlerAgg(s *state, cmd command) error {
-	if len(cmd.args) != 0 {
-		return fmt.Errorf("usage: %s", cmd.name)
+	if len(cmd.args) != 1 {
+		return fmt.Errorf("usage: %s <time>", cmd.name)
 	}
 
-	f, err := xml.FetchFeed(context.Background(), "https://www.wagslane.dev/index.xml")
+	t, err := time.ParseDuration(cmd.args[0])
 	if err != nil {
-		return fmt.Errorf("failed to fetch feed: %w", err)
+		return fmt.Errorf("failed to parse time between requests: %w", err)
 	}
-	fmt.Println("Aggregated feed:")
-	for _, item := range f.Channel.Item {
-		fmt.Println("-", item.Title)
-		fmt.Println("  ", item.Description)
+
+	fmt.Println("Collecting feeds every", t.String()+".")
+
+	ticker := time.NewTicker(t)
+	for ; ; <-ticker.C {
+		scrapeFeeds(s)
 	}
-	return nil
 }
