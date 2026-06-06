@@ -12,7 +12,7 @@ func handlerFeeds(s *state, cmd command) error {
 
 	feeds, err := s.db.GetFeeds(context.Background())
 	if err != nil {
-		return fmt.Errorf("couldn't get feeds: %w", err)
+		return fmt.Errorf("failed to get feeds: %w", err)
 	}
 
 	if len(feeds) == 0 {
@@ -25,7 +25,7 @@ func handlerFeeds(s *state, cmd command) error {
 		fmt.Println("-", feed.Name, "("+feed.Url+")")
 		user, err := s.db.GetUserById(context.Background(), feed.UserID)
 		if err != nil {
-			return fmt.Errorf("couldn't find user: %w", err)
+			return fmt.Errorf("failed to find user: %w", err)
 		}
 		fmt.Println("  (created by:", user.Name+")")
 	}

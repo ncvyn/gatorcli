@@ -12,7 +12,7 @@ func handlerUsers(s *state, cmd command) error {
 
 	users, err := s.db.GetUsers(context.Background())
 	if err != nil {
-		return fmt.Errorf("couldn't get users: %w", err)
+		return fmt.Errorf("failed to get users: %w", err)
 	}
 
 	if len(users) == 0 {

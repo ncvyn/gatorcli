@@ -14,7 +14,7 @@ func handlerAgg(s *state, cmd command) error {
 
 	f, err := xml.FetchFeed(context.Background(), "https://www.wagslane.dev/index.xml")
 	if err != nil {
-		return fmt.Errorf("couldn't fetch feed: %w", err)
+		return fmt.Errorf("failed to fetch feed: %w", err)
 	}
 	fmt.Println("Aggregated feed:")
 	for _, item := range f.Channel.Item {

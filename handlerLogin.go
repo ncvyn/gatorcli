@@ -12,11 +12,11 @@ func handlerLogin(s *state, cmd command) error {
 
 	user, err := s.db.GetUser(context.Background(), cmd.args[0])
 	if err != nil {
-		return fmt.Errorf("couldn't find user: %w", err)
+		return fmt.Errorf("failed to find user: %w", err)
 	}
 
 	if err := s.config.SetUser(user.Name); err != nil {
-		return fmt.Errorf("couldn't set user: %w", err)
+		return fmt.Errorf("failed to set user: %w", err)
 	}
 
 	fmt.Println(user.Name, "is now logged in.")
