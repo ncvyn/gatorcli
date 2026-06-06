@@ -1,12 +1,8 @@
 # gator
 
-*by ncvyn*
-
----
-
 ### NOTE
 
-This is a very basic RSS aggre*gator* CLI as part of a boot.dev guided project. Please don't throw tomatoes *(to-mah-toes?)* at me if the program crashes and burns your computer /s 
+This is a very basic RSS blog aggre*gator* CLI as part of a boot.dev guided project. Please don't throw tomatoes *(to-mah-toes?)* at me if the program crashes and burns your computer /s 
 
 ### Installation
 
