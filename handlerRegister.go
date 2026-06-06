@@ -27,6 +27,6 @@ func handlerRegister(s *state, cmd command) error {
 	if err := s.config.SetUser(user.Name); err != nil {
 		return fmt.Errorf("couldn't set user: %w", err)
 	}
-	fmt.Println("User", user.Name, "has been registered and set.")
+	fmt.Println(user.Name, "has been registered and set.")
 	return nil
 }

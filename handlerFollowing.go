@@ -20,13 +20,13 @@ func handlerFollowing(s *state, cmd command) error {
 		return fmt.Errorf("failed to get following feeds: %w", err)
 	}
 
+	fmt.Println(user.Name, "is currently following:")
 	for _, feedFollow := range feedFollows {
 		feed, err := s.db.GetFeedById(context.Background(), feedFollow.FeedID)
 		if err != nil {
 			return fmt.Errorf("failed to get feed: %w", err)
 		}
-		fmt.Println("User", user.Name, "is following the following:")
-		fmt.Println("- ", feed.Name, "(", feed.Url, ")")
+		fmt.Println("-", feed.Name, "("+feed.Url+")")
 	}
 	return nil
 }

@@ -18,7 +18,7 @@ func handlerAgg(s *state, cmd command) error {
 	}
 	fmt.Println("Aggregated feed:")
 	for _, item := range f.Channel.Item {
-		fmt.Println("*", item.Title)
+		fmt.Println("-", item.Title)
 		fmt.Println("  ", item.Description)
 	}
 	return nil

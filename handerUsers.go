@@ -15,7 +15,7 @@ func handlerUsers(s *state, cmd command) error {
 		return fmt.Errorf("couldn't get users: %w", err)
 	}
 
-	fmt.Println("Users:")
+	fmt.Println("Registered users:")
 	for _, user := range users {
 		var name string
 		if user.Name == s.config.CurrentUserName {
@@ -23,7 +23,7 @@ func handlerUsers(s *state, cmd command) error {
 		} else {
 			name = user.Name
 		}
-		fmt.Println("*", name)
+		fmt.Println("-", name)
 	}
 	return nil
 }

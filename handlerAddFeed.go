@@ -42,6 +42,7 @@ func handlerAddFeed(s *state, cmd command) error {
 		return fmt.Errorf("couldn't create feed follow: %w", err)
 	}
 
-	fmt.Println("Feed", feed.Name, "added to user", user.Name)
+	fmt.Println(feed.Name, "added.")
+	fmt.Println(user.Name, "is now following", feed.Name+".")
 	return nil
 }

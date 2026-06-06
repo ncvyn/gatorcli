@@ -15,14 +15,14 @@ func handlerFeeds(s *state, cmd command) error {
 		return fmt.Errorf("couldn't get feeds: %w", err)
 	}
 
-	fmt.Println("Feeds:")
+	fmt.Println("Registered feeds:")
 	for _, feed := range feeds {
-		fmt.Println("*", feed.Name, "("+feed.Url+")")
+		fmt.Println("-", feed.Name, "("+feed.Url+")")
 		user, err := s.db.GetUserById(context.Background(), feed.UserID)
 		if err != nil {
 			return fmt.Errorf("couldn't find user: %w", err)
 		}
-		fmt.Println("(created by:", user.Name+")")
+		fmt.Println("  (created by:", user.Name+")")
 	}
 	return nil
 }

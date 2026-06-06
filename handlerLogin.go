@@ -19,6 +19,6 @@ func handlerLogin(s *state, cmd command) error {
 		return fmt.Errorf("couldn't set user: %w", err)
 	}
 
-	fmt.Println("User", user.Name, "has been logged in.")
+	fmt.Println(user.Name, "is now logged in.")
 	return nil
 }
