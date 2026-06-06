@@ -32,6 +32,7 @@ func main() {
 	c.register("feeds", handlerFeeds)
 	c.register("follow", middleware(handlerFollow))
 	c.register("following", middleware(handlerFollowing))
+	c.register("unfollow", middleware(handlerUnfollow))
 
 	db, err := sql.Open("postgres", cfg.DbURL)
 	if err != nil {
